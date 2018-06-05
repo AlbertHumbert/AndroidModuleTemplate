@@ -1,10 +1,10 @@
 <#import "root://activities/common/kotlin_macros.ftl" as kt>
 <#import "root://gradle-projects/common/proguard_macros.ftl" as proguard>
-<#if isLibraryProject>
-apply plugin: 'com.android.library'
-<#else>
-apply plugin: 'com.android.application'
-</#if>
+if (isSingleBuildModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 <@kt.addKotlinPlugins />
 
 android {
@@ -12,9 +12,6 @@ android {
     <#if compareVersionsIgnoringQualifiers(gradlePluginVersion, '3.0.0') lt 0>buildToolsVersion "${buildToolsVersion}"</#if>
 
     defaultConfig {
-    <#if isApplicationProject>
-        applicationId "${packageName}"
-    </#if>
         minSdkVersion <#if minApi?matches("^\\d+$")>${minApi}<#else>'${minApi}'</#if>
         targetSdkVersion <#if targetApiString?matches("^\\d+$")>${targetApiString}<#else>'${targetApiString}'</#if>
         versionCode 1
@@ -29,6 +26,11 @@ android {
             }
         }
     </#if>
+            javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
 <#if javaVersion?? && (javaVersion != "1.6" && buildApi lt 21 || javaVersion != "1.7")>
 
@@ -51,6 +53,7 @@ android {
 
 dependencies {
     ${getConfigurationName("compile")} fileTree(dir: 'libs', include: ['*.jar'])
-    ${getConfigurationName("provided")} 'com.google.android.things:androidthings:+'
+    implementation project(":commonres")
+    implementation project(":basemodule")
     <@kt.addKotlinDependencies />
 }
