@@ -11,6 +11,12 @@
                    to="${escapeXmlAttribute(projectOut)}/build.gradle" />
     <instantiate from="root/AndroidManifest.xml.ftl"
                    to="${escapeXmlAttribute(manifestOut)}/AndroidManifest.xml" />
+                   
+ 	<instantiate from="root/DebugAndroidManifest.xml.ftl"
+                   to="${escapeXmlAttribute(manifestOut)}/manifest/debug/AndroidManifest.xml" />
+      <instantiate from="root/ReleaseAndroidManifest.xml.ftl"
+                   to="${escapeXmlAttribute(manifestOut)}/manifest/Release/AndroidManifest.xml" />
+                  
     <instantiate from="root/res/values/strings.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/values/strings.xml" />
     <instantiate from="root/test/app_package/ExampleInstrumentedTest.${ktOrJavaExt}.ftl"

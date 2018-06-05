@@ -3,14 +3,18 @@
 <recipe>
     <mkdir at="${escapeXmlAttribute(projectOut)}/libs" />
     <mkdir at="${escapeXmlAttribute(resOut)}/drawable" />
-
+    <mkdir at="${escapeXmlAttribute(projectOut)}/src/main/manifest" />
+    <mkdir at="${escapeXmlAttribute(manifestOut)}/manifest/debug" />
+    <mkdir at="${escapeXmlAttribute(manifestOut)}/manifest/release" />
     <merge from="root/settings.gradle.ftl"
              to="${escapeXmlAttribute(topOut)}/settings.gradle" />
 
     <instantiate from="root/build.gradle.ftl"
                    to="${escapeXmlAttribute(projectOut)}/build.gradle" />
-    <instantiate from="root/AndroidManifest.xml.ftl"
-                   to="${escapeXmlAttribute(manifestOut)}/AndroidManifest.xml" />
+    <instantiate from="root/DebugAndroidManifest.xml.ftl"
+                   to="${escapeXmlAttribute(manifestOut)}/manifest/debug/AndroidManifest.xml" />
+    <instantiate from="root/ReleaseAndroidManifest.xml.ftl"
+                   to="${escapeXmlAttribute(manifestOut)}/manifest/release/AndroidManifest.xml" />
     <instantiate from="root/res/values/strings.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/values/strings.xml" />
     <instantiate from="root/test/app_package/ExampleInstrumentedTest.${ktOrJavaExt}.ftl"

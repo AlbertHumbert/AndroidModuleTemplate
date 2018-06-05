@@ -11,6 +11,17 @@ android {
     compileSdkVersion <#if buildApiString?matches("^\\d+$")>${buildApiString}<#else>'${buildApiString}'</#if>
     <#if compareVersionsIgnoringQualifiers(gradlePluginVersion, '3.0.0') lt 0>buildToolsVersion "${buildToolsVersion}"</#if>
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            if (isSingleBuildModule.toBoolean()) {
+                manifest.srcFile 'src/main/manifest/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/manifest/release/AndroidManifest.xml'
+            }
+        }
+    }
+    
     defaultConfig {
         minSdkVersion <#if minApi?matches("^\\d+$")>${minApi}<#else>'${minApi}'</#if>
         targetSdkVersion <#if targetApiString?matches("^\\d+$")>${targetApiString}<#else>'${targetApiString}'</#if>

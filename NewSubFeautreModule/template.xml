@@ -84,12 +84,24 @@
         name="Create .gitignore file"
         type="boolean"
         default="true" />
-
+    
     <parameter
         id="includeCppSupport"
         name="Enable C++ Support"
         type="boolean"
         default="false" />
+    
+    <parameter
+        id="useCommonRes"
+        name="use common res module"
+        type="boolean"
+        default="true" />
+
+    <parameter
+        id="useCommonSdk"
+        name="use common sdk module"
+        type="boolean"
+        default="true" />
 
     <globals file="globals.xml.ftl" />
     <execute file="recipe.xml.ftl" />
