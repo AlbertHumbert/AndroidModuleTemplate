@@ -1,10 +1,6 @@
 <#import "root://activities/common/kotlin_macros.ftl" as kt>
 <#import "root://gradle-projects/common/proguard_macros.ftl" as proguard>
-if (isSingleBuildModule.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
     apply plugin: 'com.android.library'
-}
 <@kt.addKotlinPlugins />
 
 android {
@@ -14,11 +10,7 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
-            if (isSingleBuildModule.toBoolean()) {
-                manifest.srcFile 'src/main/manifest/debug/AndroidManifest.xml'
-            } else {
                 manifest.srcFile 'src/main/manifest/release/AndroidManifest.xml'
-            }
         }
         
         resourcePrefix "${escapeXmlString(appTitle)}_"
