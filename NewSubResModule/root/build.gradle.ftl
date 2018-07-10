@@ -1,10 +1,10 @@
 <#import "root://activities/common/kotlin_macros.ftl" as kt>
 <#import "root://gradle-projects/common/proguard_macros.ftl" as proguard>
-<#if isLibraryProject>
-apply plugin: 'com.android.library'
-<#else>
-apply plugin: 'com.android.application'
-</#if>
+if (isSingleBuildModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 <@kt.addKotlinPlugins />
 
 android {
@@ -12,13 +12,19 @@ android {
     <#if compareVersionsIgnoringQualifiers(gradlePluginVersion, '3.0.0') lt 0>buildToolsVersion "${buildToolsVersion}"</#if>
 
     sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            if (isSingleBuildModule.toBoolean()) {
+                manifest.srcFile 'src/main/manifest/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/manifest/release/AndroidManifest.xml'
+            }
+        }
+        
         resourcePrefix "${escapeXmlString(appTitle)}_"
     }
     
     defaultConfig {
-    <#if isApplicationProject>
-        applicationId "${packageName}"
-    </#if>
         minSdkVersion <#if minApi?matches("^\\d+$")>${minApi}<#else>'${minApi}'</#if>
         targetSdkVersion <#if targetApiString?matches("^\\d+$")>${targetApiString}<#else>'${targetApiString}'</#if>
         versionCode 1
@@ -33,6 +39,11 @@ android {
             }
         }
     </#if>
+            javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
 <#if javaVersion?? && (javaVersion != "1.6" && buildApi lt 21 || javaVersion != "1.7")>
 
@@ -55,6 +66,8 @@ android {
 
 dependencies {
     ${getConfigurationName("compile")} fileTree(dir: 'libs', include: ['*.jar'])
-    ${getConfigurationName("provided")} 'com.google.android.things:androidthings:+'
+    ${getConfigurationName("compile")}  project(":commonres")
+    ${getConfigurationName("compile")}  project(":basemodule")
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     <@kt.addKotlinDependencies />
 }
