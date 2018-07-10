@@ -11,6 +11,10 @@ android {
     compileSdkVersion <#if buildApiString?matches("^\\d+$")>${buildApiString}<#else>'${buildApiString}'</#if>
     <#if compareVersionsIgnoringQualifiers(gradlePluginVersion, '3.0.0') lt 0>buildToolsVersion "${buildToolsVersion}"</#if>
 
+    sourceSets {
+        resourcePrefix "${escapeXmlString(appTitle)}_"
+    }
+    
     defaultConfig {
     <#if isApplicationProject>
         applicationId "${packageName}"

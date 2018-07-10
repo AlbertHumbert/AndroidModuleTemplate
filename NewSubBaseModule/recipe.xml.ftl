@@ -3,6 +3,9 @@
 <recipe>
     <mkdir at="${escapeXmlAttribute(projectOut)}/libs" />
     <mkdir at="${escapeXmlAttribute(resOut)}/drawable" />
+    <mkdir at="${escapeXmlAttribute(resOut)}/drawable-xhdpi" />
+    <mkdir at="${escapeXmlAttribute(resOut)}/mipmap-xhdpi" />
+    <mkdir at="${escapeXmlAttribute(resOut)}/mipmap-xhdpi" />
     <mkdir at="${escapeXmlAttribute(projectOut)}/src/main/manifest" />
     <mkdir at="${escapeXmlAttribute(manifestOut)}/manifest/debug" />
     <mkdir at="${escapeXmlAttribute(manifestOut)}/manifest/release" />
@@ -17,6 +20,10 @@
                    to="${escapeXmlAttribute(manifestOut)}/manifest/release/AndroidManifest.xml" />
     <instantiate from="root/res/values/strings.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/values/strings.xml" />
+    <instantiate from="root/res/values/attrs.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/values/attrs.xml" />
+    <instantiate from="root/res/values/dimens.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/values/dimens.xml" />    
     <instantiate from="root/test/app_package/ExampleInstrumentedTest.${ktOrJavaExt}.ftl"
                    to="${escapeXmlAttribute(testOut)}/ExampleInstrumentedTest.${ktOrJavaExt}" />
 

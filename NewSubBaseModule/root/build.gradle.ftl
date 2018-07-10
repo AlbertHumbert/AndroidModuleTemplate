@@ -20,6 +20,8 @@ android {
                 manifest.srcFile 'src/main/manifest/release/AndroidManifest.xml'
             }
         }
+        
+        resourcePrefix "${escapeXmlString(appTitle)}_"
     }
     
     defaultConfig {
