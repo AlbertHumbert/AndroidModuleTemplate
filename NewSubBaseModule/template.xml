@@ -2,8 +2,8 @@
 <template
     format="5"
     revision="1"
-    name="Android Sdk Submodule"
-    description="Creates a new common sdk submodule.">
+    name="Base  Submodule"
+    description="Creates a new base submodule.">
 
     <category value="Application" />
 
@@ -25,14 +25,14 @@
         name="Module title"
         type="string"
         constraints="nonempty"
-        default="My Module" />
+        default="Base Module" />
 
     <parameter
         id="minApi"
         name="Minimum API level"
         type="string"
         constraints="apilevel"
-        default="24" />
+        default="19" />
 
     <!--
       Usually the same as minApi, but when minApi is a code name this will be the corresponding
@@ -43,14 +43,14 @@
         name="Minimum API level"
         type="string"
         constraints="apilevel"
-        default="24" />
+        default="19" />
 
     <parameter
         id="targetApi"
         name="Target API level"
         type="string"
         constraints="apilevel"
-        default="24" />
+        default="27" />
 
     <!--
       Usually the same as targetApi, but when targeting a preview platform this is the code name instead
@@ -60,7 +60,7 @@
         name="Target API"
         type="string"
         constraints="apilevel"
-        default="24" />
+        default="27" />
 
     <parameter
         id="buildApi"
@@ -84,12 +84,13 @@
         name="Create .gitignore file"
         type="boolean"
         default="true" />
-
+    
     <parameter
         id="includeCppSupport"
         name="Enable C++ Support"
         type="boolean"
         default="false" />
+    
 
     <globals file="globals.xml.ftl" />
     <execute file="recipe.xml.ftl" />
