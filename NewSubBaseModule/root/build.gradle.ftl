@@ -66,6 +66,8 @@ android {
 
 dependencies {
     ${getConfigurationName("compile")} fileTree(dir: 'libs', include: ['*.jar'])
+    ${getConfigurationName("compile")} 'com.alibaba:arouter-api:1.1.4'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    ${getConfigurationName("compile")}  project(":commonres")
     <@kt.addKotlinDependencies />
 }

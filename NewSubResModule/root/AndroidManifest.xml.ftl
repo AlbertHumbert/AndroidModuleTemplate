@@ -2,7 +2,7 @@
     package="${packageName}"
     <#if !isLibraryProject>/</#if>><#if isLibraryProject>
     <application android:allowBackup="true"
-        android:label="@string/app_name"
+        android:label="@string/${escapeXmlString(appTitle)}_app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <uses-library android:name="com.google.android.things"/>
