@@ -14,6 +14,6 @@
      	  android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/${escapeXmlString(appTitle)}_app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/${escapeXmlString(appTitle)}_Theme">
        </application>
 </manifest>

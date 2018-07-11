@@ -24,9 +24,10 @@
                    to="${escapeXmlAttribute(resOut)}/values/attrs.xml" />
     <instantiate from="root/res/values/dimens.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/values/dimens.xml" />  
-                   
-    <instantiate from="root/res/values/strings.xml.ftl"
-                   to="${escapeXmlAttribute(resOut)}/values/strings.xml" />
+    <instantiate from="root/res/values/colors.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/values/colors.xml" />
+    <instantiate from="root/res/values/styles.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/values/styles.xml" />
     <instantiate from="root/test/app_package/ExampleInstrumentedTest.${ktOrJavaExt}.ftl"
                    to="${escapeXmlAttribute(testOut)}/ExampleInstrumentedTest.${ktOrJavaExt}" />
 
