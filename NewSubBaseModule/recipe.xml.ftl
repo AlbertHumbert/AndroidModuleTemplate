@@ -21,7 +21,11 @@
     <instantiate from="root/res/values/attrs.xml.ftl"
                    to="${escapeXmlAttribute(resOut)}/values/attrs.xml" />
     <instantiate from="root/res/values/dimens.xml.ftl"
-                   to="${escapeXmlAttribute(resOut)}/values/dimens.xml" />    
+                   to="${escapeXmlAttribute(resOut)}/values/dimens.xml" />  
+    <instantiate from="root/res/values/colors.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/values/colors.xml" />
+    <instantiate from="root/res/values/styles.xml.ftl"
+                   to="${escapeXmlAttribute(resOut)}/values/styles.xml" />  
     <instantiate from="root/test/app_package/ExampleInstrumentedTest.${ktOrJavaExt}.ftl"
                    to="${escapeXmlAttribute(testOut)}/ExampleInstrumentedTest.${ktOrJavaExt}" />
 
@@ -44,15 +48,6 @@
 </#if>
 
     <#include "root://gradle-projects/common/proguard_recipe.xml.ftl"/>
-
-<#if !isLibraryProject && generateLayout!false>
-    <instantiate from="root/res/values/styles.xml.ftl"
-                   to="${escapeXmlAttribute(resOut)}/values/styles.xml" />
-    <#if buildApi gte 22>
-        <copy from="root/res/values/colors.xml"
-                to="${escapeXmlAttribute(resOut)}/values/colors.xml" />
-    </#if>
-</#if>
 
 <#if includeCppSupport>
     <mkdir at="${escapeXmlAttribute(nativeSrcOut)}" />
