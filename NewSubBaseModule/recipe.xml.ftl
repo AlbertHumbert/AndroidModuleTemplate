@@ -14,8 +14,6 @@
 
     <instantiate from="root/build.gradle.ftl"
                    to="${escapeXmlAttribute(projectOut)}/build.gradle" />
-    <instantiate from="root/DebugAndroidManifest.xml.ftl"
-                   to="${escapeXmlAttribute(manifestOut)}/manifest/debug/AndroidManifest.xml" />
     <instantiate from="root/ReleaseAndroidManifest.xml.ftl"
                    to="${escapeXmlAttribute(manifestOut)}/manifest/release/AndroidManifest.xml" />
     <instantiate from="root/res/values/strings.xml.ftl"
