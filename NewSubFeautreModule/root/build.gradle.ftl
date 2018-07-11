@@ -8,8 +8,7 @@ if (isSingleBuildModule.toBoolean()) {
 <@kt.addKotlinPlugins />
 
 android {
-    compileSdkVersion <#if buildApiString?matches("^\\d+$")>${buildApiString}<#else>'${buildApiString}'</#if>
-    <#if compareVersionsIgnoringQualifiers(gradlePluginVersion, '3.0.0') lt 0>buildToolsVersion "${buildToolsVersion}"</#if>
+    compileSdkVersion compile_sdk_version
 
     sourceSets {
         main {
@@ -25,10 +24,10 @@ android {
     }
     
     defaultConfig {
-        minSdkVersion <#if minApi?matches("^\\d+$")>${minApi}<#else>'${minApi}'</#if>
-        targetSdkVersion <#if targetApiString?matches("^\\d+$")>${targetApiString}<#else>'${targetApiString}'</#if>
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion  min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode version_code
+        versionName version_name
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
