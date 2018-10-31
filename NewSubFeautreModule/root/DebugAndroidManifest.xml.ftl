@@ -15,5 +15,14 @@
         android:label="@string/${escapeXmlString(appTitle)}_app_name"
         android:supportsRtl="true"
         android:theme="@style/${escapeXmlString(appTitle)}_Theme">
+
+        //todo replace your launcher here
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
        </application>
 </manifest>
