@@ -9,6 +9,11 @@ if (isSingleBuildModule.toBoolean()) {
 
 android {
     compileSdkVersion compile_sdk_version
+    
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 
     sourceSets {
         main {
@@ -44,13 +49,6 @@ android {
             }
         }
     }
-<#if javaVersion?? && (javaVersion != "1.6" && buildApi lt 21 || javaVersion != "1.7")>
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_${javaVersion?replace('.','_','i')}
-        targetCompatibility JavaVersion.VERSION_${javaVersion?replace('.','_','i')}
-    }
-</#if>
 
 <@proguard.proguardConfig />
 
